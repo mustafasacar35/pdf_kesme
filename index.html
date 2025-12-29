@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/pdf_kesme/assets/index-BXlFk8gz.js"></script>
-  <link rel="stylesheet" crossorigin href="/pdf_kesme/assets/index-Cz7cOqRm.css">
+  <script type="module" crossorigin src="/pdf_kesme/assets/index-fhLBWZO1.js"></script>
+  <link rel="stylesheet" crossorigin href="/pdf_kesme/assets/index-BXcFHfbh.css">
 </head>
 
 <body>
@@ -134,6 +134,14 @@
             <label title="Açıkken metne tıklayarak oradan okumayı başlatabilirsiniz">
               <input type="checkbox" id="ttsClickMode" checked /> 👆 Tıkla-Oku
             </label>
+          </div>
+          <div class="tts-settings pauses-grid">
+            <label title="Virgüllerdeki bekleme">Virgül: <input type="range" id="pauseComma" min="0" max="1000"
+                step="50" value="100" /><span>100ms</span></label>
+            <label title="Noktalardaki bekleme">Nokta: <input type="range" id="pausePeriod" min="0" max="2000"
+                step="100" value="300" /><span>300ms</span></label>
+            <label title="Satır/Paragraf sonu bekleme">Geçiş: <input type="range" id="pausePara" min="0" max="2000"
+                step="100" value="500" /><span>500ms</span></label>
           </div>
           <div class="tts-progress">
             <span id="ttsCurrentPara">0</span> / <span id="ttsTotalPara">0</span> paragraf
