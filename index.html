@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/pdf_kesme/assets/index-B0bxku_U.js"></script>
-  <link rel="stylesheet" crossorigin href="/pdf_kesme/assets/index-CMHZrrbf.css">
+  <script type="module" crossorigin src="/pdf_kesme/assets/index-BXlFk8gz.js"></script>
+  <link rel="stylesheet" crossorigin href="/pdf_kesme/assets/index-Cz7cOqRm.css">
 </head>
 
 <body>
@@ -50,6 +50,25 @@
           </div>
         </section>
 
+        <section class="controls-section ocr-section hidden" id="ocrSection">
+          <div class="ocr-toggle">
+            <label class="toggle-switch">
+              <input type="checkbox" id="ocrEnabled" />
+              <span class="slider"></span>
+              <span class="label-text">✨ OCR Modu (Taranmış PDF)</span>
+            </label>
+          </div>
+          <div id="ocrOptions" class="ocr-options hidden">
+            <label>Dil:
+              <select id="ocrLang">
+                <option value="tur" selected>Türkçe (tur)</option>
+                <option value="eng">English (eng)</option>
+                <option value="tur+eng">Türkçe + English</option>
+              </select>
+            </label>
+          </div>
+        </section>
+
         <section class="action-section">
           <p id="statusMsg" class="status-msg"></p>
           <button id="downloadBtn" class="primary-btn full-width" disabled>
@@ -70,17 +89,61 @@
 
         <!-- PDF Preview -->
         <div id="previewContainer" class="preview-container hidden">
-          <canvas id="pdfCanvas"></canvas>
+          <div id="pdfWrapper" class="pdf-wrapper">
+            <canvas id="pdfCanvas"></canvas>
+            <div id="pdfTextLayer" class="textLayer"></div>
+          </div>
           <div class="page-indicator">Sayfa <span id="previewPageNum">-</span> / <span id="previewTotal">-</span></div>
         </div>
 
         <!-- EPUB Preview -->
         <div id="epubPreviewContainer" class="preview-container hidden internal-scroll">
+          <!-- EPUB Navigation -->
+          <div class="epub-nav-bar">
+            <button id="epubPrevBtn" class="epub-nav-btn" title="Önceki">◀</button>
+            <span id="epubChapterLabel">Bölüm Yükleniyor...</span>
+            <button id="epubNextBtn" class="epub-nav-btn" title="Sonraki">▶</button>
+          </div>
           <div id="epubViewer"></div>
-          <div class="page-indicator">Bölüm Önizleme</div>
+        </div>
+
+        <!-- TTS Global Controls -->
+        <div id="ttsControls" class="tts-controls hidden">
+          <div class="tts-buttons">
+            <button id="ttsPrevChapterBtn" class="tts-btn" title="Önceki Bölüm">⏮️</button>
+            <button id="ttsBackBtn" class="tts-btn" title="Önceki paragraf">⏪</button>
+            <button id="ttsPlayBtn" class="tts-btn tts-play" title="Oynat/Duraklat">▶️</button>
+            <button id="ttsForwardBtn" class="tts-btn" title="Sonraki paragraf">⏩</button>
+            <button id="ttsNextChapterBtn" class="tts-btn" title="Sonraki Bölüm">⏭️</button>
+            <button id="ttsStopBtn" class="tts-btn" title="Durdur">⏹️</button>
+          </div>
+          <div class="tts-settings">
+            <label>Hız: <select id="ttsSpeed">
+                <option value="0.5">0.5x</option>
+                <option value="0.75">0.75x</option>
+                <option value="1" selected>1x</option>
+                <option value="1.25">1.25x</option>
+                <option value="1.5">1.5x</option>
+                <option value="2">2x</option>
+              </select></label>
+            <label>Ses: <select id="ttsVoice"></select></label>
+          </div>
+          <div class="tts-settings">
+            <label>Satır: <input type="color" id="ttsLineColor" value="#3b82f6" /></label>
+            <label>Kelime: <input type="color" id="ttsWordColor" value="#1e40af" /></label>
+            <label title="Açıkken metne tıklayarak oradan okumayı başlatabilirsiniz">
+              <input type="checkbox" id="ttsClickMode" checked /> 👆 Tıkla-Oku
+            </label>
+          </div>
+          <div class="tts-progress">
+            <span id="ttsCurrentPara">0</span> / <span id="ttsTotalPara">0</span> paragraf
+          </div>
+        </div>
+
+        <div class="preview-footer-panel">
+          <button id="ttsToggleBtn" class="tts-toggle-btn">🔊 Sesli Oku</button>
         </div>
       </main>
-    </main>
   </div>
 </body>
 
